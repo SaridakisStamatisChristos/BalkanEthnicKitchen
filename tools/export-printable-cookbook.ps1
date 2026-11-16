@@ -1286,6 +1286,27 @@ h3 {
     color: rgba(255, 247, 234, 0.76);
 }
 
+/* Recipe layout */
+.recipe { padding: 8mm 0 9mm; border-top: 2px solid #9c5f35; }
+.recipe-header { align-items: start; }
+.recipe-title-block h3 { font-size: 1.65rem; line-height: 1.15; margin: 0; }
+.recipe-kicker { color: #80502d; font-weight: bold; }
+.recipe-meta { min-width: 40mm; font-size: .84rem; }
+.recipe-intro { color: #55483c; line-height: 1.5; margin: 4mm 0 5mm; }
+.recipe-body { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.35fr); gap: 7mm; align-items: start; }
+.recipe-body h4 { margin: 0 0 3mm; font-size: .78rem; color: #80502d; }
+.recipe-ingredients { margin: 0; padding: 5mm; background: #f7f0e5; border: 0; border-top: 2px solid #b58359; }
+.recipe-body ul { padding-left: 4mm; }
+.recipe-body ol { padding-left: 5mm; }
+.recipe-body li { line-height: 1.45; }
+.recipe-body li + li { margin-top: 2mm; }
+.recipe-body ol li::marker { color: #80502d; font-weight: bold; }
+.serving-note { margin-top: 5mm; line-height: 1.45; }
+@media screen and (max-width: 700px) {
+    .recipe-body { grid-template-columns: 1fr; }
+    .recipe-header { flex-wrap: wrap; }
+}
+
 @page {
     size: A4;
     margin: 18mm 12mm 18mm;
