@@ -1,0 +1,27 @@
+# Styria Mushroom And Fresh Cheese Pastry
+
+- Country: Slovenia
+- Category: Savory pastry
+- Yield: 10 pieces
+- Time: 1 hour 20 minutes
+
+## Intro
+This original Slovenia home-style savory pastry centers on mushrooms with fresh cheese, seasoned with caraway and butter. It is written for this collection and inspired by the country's broader pantry of beans, sauerkraut, buckwheat, dairy, and alpine pastry traditions.
+
+## Ingredients
+- 8 sheets phyllo dough
+- 80 g melted butter
+- 300 g mushrooms
+- 120 g fresh cheese
+- 120 ml syrup or honey
+- 1 tbsp caraway and butter
+
+## Method
+1. Heat the oven to 190 C and butter the baking tin.
+2. Prepare the filling from the mushrooms, the fresh cheese, and the flavoring.
+3. Layer phyllo with butter and the filling, cutting the pastry before it bakes if you want clean portions.
+4. Bake until crisp and deeply golden.
+5. Finish with syrup or honey while still warm if the pastry is meant to be sweet.
+
+## Serving Note
+Let the pastry settle slightly before cutting neat portions.

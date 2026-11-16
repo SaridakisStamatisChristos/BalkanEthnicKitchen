@@ -1,0 +1,12 @@
+{
+  "name": "balkan-ethnick-cookbook",
+  "private": true,
+  "type": "module",
+  "description": "Tooling for generating and exporting the Balkan Ethnick cookbook.",
+  "scripts": {
+    "export:print": "pwsh -File .\\tools\\export-printable-cookbook.ps1"
+  },
+  "dependencies": {
+    "playwright-core": "1.60.0"
+  }
+}
