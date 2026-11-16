@@ -469,6 +469,19 @@ $editionName = 'Printable Heritage Edition'
 $coverTagline = 'A regional kitchen atlas of breads, stews, grills, sweets, and home-table classics from across the Balkans.'
 $exportCommandText = 'pwsh -File .\tools\export-printable-cookbook.ps1'
 
+# The front matter occupies three pages. Each chapter and recipe starts on its own page.
+$chapterPages = @{}
+$recipePages = @{}
+$nextPage = 4
+foreach ($country in $countries) {
+    $chapterPages[$country.Anchor] = $nextPage
+    $nextPage++
+    foreach ($recipe in $country.Recipes) {
+        $recipePages[$recipe.Anchor] = $nextPage
+        $nextPage++
+    }
+}
+
 $recipeIndexEntries = @(
     foreach ($country in $countries) {
         foreach ($recipe in $country.Recipes) {
@@ -483,6 +496,7 @@ $recipeIndexEntries = @(
                 Country = $country.DisplayName
                 Category = $recipe.Category
                 Anchor = $recipe.Anchor
+                Page = $recipePages[$recipe.Anchor]
             }
         }
     }
@@ -1307,6 +1321,19 @@ h3 {
     .recipe-header { flex-wrap: wrap; }
 }
 
+/* Predictable print pagination and compact, complete chapter contents. */
+.country-divider { min-height: 250mm; height: 250mm; padding: 8mm; break-inside: avoid; }
+.country-divider-shell { min-height: 0; }
+.country-divider-top { gap: 6mm; }
+.country-motif-ribbon { height: 10mm; }
+.country-recipe-list { columns: 2; column-gap: 8mm; margin: 7mm 0 0; font-size: .84rem; line-height: 1.25; padding-left: 4mm; }
+.country-recipe-list li { margin-bottom: 1.3mm; padding-right: 1mm; }
+.recipe-page { color: var(--muted); white-space: nowrap; }
+.country-guide li { margin-bottom: 4mm; }
+.index-group { break-inside: auto; }
+.index-group li { break-inside: avoid; }
+@media screen and (max-width: 700px) { .country-divider { height: auto; min-height: 0; } .country-recipe-list { columns: 1; font-size: 1rem; } }
+
 @page {
     size: A4;
     margin: 18mm 12mm 18mm;
@@ -1419,7 +1446,7 @@ $null = $html.AppendLine('      <ul class="country-guide">')
 
 foreach ($country in $countries) {
     $countryName = Encode-Html $country.DisplayName
-    $null = $html.AppendLine(('        <li><a href="#{0}">{1}</a><span class="country-count">{2} recipes</span></li>' -f $country.Anchor, $countryName, $country.Recipes.Count))
+    $null = $html.AppendLine(('        <li><a href="#{0}">{1}</a><span class="country-count">page {2}</span></li>' -f $country.Anchor, $countryName, $chapterPages[$country.Anchor]))
 }
 
 $null = $html.AppendLine('      </ul>')
@@ -1459,7 +1486,7 @@ foreach ($country in $countries) {
 
     foreach ($recipe in $country.Recipes) {
         $recipeTitle = Encode-Html $recipe.Title
-        $null = $html.AppendLine(('        <li><a href="#{0}">{1}</a></li>' -f $recipe.Anchor, $recipeTitle))
+        $null = $html.AppendLine(('        <li><a href="#{0}">{1}</a> <span class="recipe-page">(p. {2})</span></li>' -f $recipe.Anchor, $recipeTitle, $recipePages[$recipe.Anchor]))
     }
 
     $null = $html.AppendLine('        </ol>')
@@ -1474,7 +1501,7 @@ foreach ($country in $countries) {
         $recipeTime = Encode-Html $recipe.Time
         $servingNote = Encode-Html $recipe.ServingNote
 
-        $null = $html.AppendLine(('    <article class="recipe" id="{0}">' -f $recipe.Anchor))
+        $null = $html.AppendLine(('    <article class="recipe page-break" id="{0}">' -f $recipe.Anchor))
         $null = $html.AppendLine('      <header class="recipe-header">')
         $null = $html.AppendLine('        <div class="recipe-title-block">')
         $null = $html.AppendLine(('          <p class="recipe-kicker">{0} / {1}</p>' -f $countryName, $recipeCategory))
@@ -1525,7 +1552,7 @@ foreach ($group in ($recipeIndexEntries | Group-Object Letter)) {
     $null = $html.AppendLine('          <ul>')
 
     foreach ($entry in ($group.Group | Sort-Object Title, Country)) {
-        $null = $html.AppendLine(('            <li><a href="#{0}">{1}</a><span class="index-ref">{2} / {3}</span></li>' -f $entry.Anchor, (Encode-Html $entry.Title), (Encode-Html $entry.Country), (Encode-Html $entry.Category)))
+        $null = $html.AppendLine(('            <li><a href="#{0}">{1}</a><span class="index-ref">{2} · page {3}</span></li>' -f $entry.Anchor, (Encode-Html $entry.Title), (Encode-Html $entry.Country), $entry.Page))
     }
 
     $null = $html.AppendLine('          </ul>')
