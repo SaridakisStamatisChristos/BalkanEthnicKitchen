@@ -23,3 +23,4 @@ Export:
 - Run `npm install` once to install the PDF export dependency.
 - Run `pwsh -File .\tools\export-printable-cookbook.ps1` to build `exports/balkan-cookbook-printable.html`.
 - If Microsoft Edge or Google Chrome is available, the same command also creates `exports/balkan-cookbook-printable.pdf` with running headers, page numbers, a print index, chapter opener pages, a colophon, and a back cover.
+- Place the front cover image at `exports/cover.png` before exporting; keep it alongside the HTML file when sharing the HTML edition.

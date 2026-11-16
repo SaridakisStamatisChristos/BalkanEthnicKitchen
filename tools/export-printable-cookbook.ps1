@@ -532,6 +532,9 @@ article {
     width: 100%;
 }
 
+.cover-image-page { text-align: center; break-inside: avoid; }
+.cover-image { display: block; max-width: 100%; width: auto; height: auto; max-height: 250mm; margin: 0 auto; }
+
 .cover {
     position: relative;
     min-height: 270mm;
@@ -1346,29 +1349,8 @@ $null = $html.AppendLine('  </style>')
 $null = $html.AppendLine('</head>')
 $null = $html.AppendLine('<body>')
 $null = $html.AppendLine('  <main>')
-$null = $html.AppendLine('    <section class="cover">')
-$null = $html.AppendLine('      <div class="cover-shell">')
-$null = $html.AppendLine('        <div class="cover-brand-row">')
-$null = $html.AppendLine('          <div class="brand-lockup">')
-$null = $html.AppendLine('            <div class="brand-badge">BE</div>')
-$null = $html.AppendLine(('            <div class="brand-text"><strong>{0}</strong><span>{1}</span></div>' -f (Encode-Html $brandName), (Encode-Html $brandSeries)))
-$null = $html.AppendLine('          </div>')
-$null = $html.AppendLine(('          <p class="cover-kicker">{0}</p>' -f (Encode-Html $editionName)))
-$null = $html.AppendLine('        </div>')
-$null = $html.AppendLine('        <div class="cover-hero">')
-$null = $html.AppendLine('          <p class="eyebrow eyebrow--light">Twelve Countries, One Volume</p>')
-$null = $html.AppendLine(('          <h1 class="cover-title">{0}</h1>' -f (Encode-Html $bookTitle)))
-$null = $html.AppendLine(('          <p class="cover-deck">{0}</p>' -f (Encode-Html $coverTagline)))
-$null = $html.AppendLine('        </div>')
-$null = $html.AppendLine('        <div class="cover-footer">')
-$null = $html.AppendLine('          <div class="cover-stats">')
-$null = $html.AppendLine(('            <div class="cover-stat"><strong>{0}</strong><span>Countries</span></div>' -f $countries.Count))
-$null = $html.AppendLine(('            <div class="cover-stat"><strong>{0}</strong><span>Recipes</span></div>' -f $totalRecipes))
-$null = $html.AppendLine(('            <div class="cover-stat"><strong>{0}</strong><span>Export Date</span></div>' -f $generatedOn))
-$null = $html.AppendLine('          </div>')
-$null = $html.AppendLine('          <p class="cover-note">Designed for home printing or bindery output, with country divider chapters and unified recipe styling across the full collection.</p>')
-$null = $html.AppendLine('        </div>')
-$null = $html.AppendLine('      </div>')
+$null = $html.AppendLine('    <section class="cover-image-page">')
+$null = $html.AppendLine('      <img src="cover.png" alt="Balkan Ethnic Recipes: Traditional Home Cooking from Southeastern Europe" class="cover-image">')
 $null = $html.AppendLine('    </section>')
 $null = $html.AppendLine('    <section class="title-page page-break">')
 $null = $html.AppendLine('      <div class="title-page-shell">')
